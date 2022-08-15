@@ -32,3 +32,12 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+-----------------------------------------------------
+
+# 노마드코더
+
+next.js 장점
+- route 설치하지 않아도 pages 폴더 아래에 파일 생성하면 해당 파일명 기준으로 페이지 구분 가능
+- react의 특정 기능을 사용하지 않는 한, import react 없이도 jsx 문법 사용 및 렌더링 가능
+- 앱에 있는 페이지들이 미리 렌더링 됨
