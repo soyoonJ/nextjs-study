@@ -56,6 +56,8 @@ export default function NavBar() {
   const router = useRouter();
   return (
     <nav>
+      {/* ../public~~~ 경로를 쓰지 않고, 바로 public에 있는 이미지를 / 해서 사용가능 */}
+      <img src="/vercel.svg" />
       <Link href="/">
         <a className={router.pathname === "/" ? "active" : ""}>Home</a>
       </Link>

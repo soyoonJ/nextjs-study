@@ -7,13 +7,14 @@
 // useState 같은 훅 사용하려면 import 해와야 하긴 함
 // import {useState} from 'react';
 // import NavBar from "../components/NavBar";
+import Seo from "../components/Seo";
 
 export default function Home() {
   // const [counter, setCounter] = useState(0)
   return (
     <div>
       {/* <NavBar /> */}
-      <h1>Hello</h1>
+      {/* <h1>Hello</h1> */}
       {/* <h1>Hello {counter}</h1> */}
       {/* <button onClick={()=> setCounter(prev=>prev+1)}>counter+</button> */}
       {/* <style jsx global>{`
@@ -21,6 +22,9 @@ export default function Home() {
           color: white;
         }
       `}</style> */}
+      <Seo title="Home">
+        <h1>Hello</h1>
+      </Seo>
     </div>
   );
 }
