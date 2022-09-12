@@ -10,16 +10,16 @@
 import { useEffect, useState } from "react";
 import Seo from "../components/Seo";
 
-export default function Home() {
+export default function Home({ results }) {
   // const [counter, setCounter] = useState(0)
-  const [movies, setMovies] = useState();
-  useEffect(() => {
-    (async () => {
-      const { results } = await (await fetch("/api/movies")).json();
-      // console.log(results);
-      setMovies(results);
-    })();
-  }, []);
+  // const [movies, setMovies] = useState();
+  // useEffect(() => {
+  //   (async () => {
+  //     const { results } = await (await fetch("/api/movies")).json();
+  //     // console.log(results);
+  //     setMovies(results);
+  //   })();
+  // }, []);
   return (
     <div>
       {/* <NavBar /> */}
@@ -32,8 +32,8 @@ export default function Home() {
         }
       `}</style> */}
       <Seo title="Home" />
-      {!movies && <h4>Loading...</h4>}
-      {movies?.map((movie) => (
+      {/* {!movies && <h4>Loading...</h4>} */}
+      {results?.map((movie) => (
         <div key={movie.id}>
           <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} />
           <h4>{movie.original_title}</h4>
@@ -41,4 +41,20 @@ export default function Home() {
       ))}
     </div>
   );
+}
+
+// getServerSideProps는 이름 절대 바꾸면 안됨!
+// server에서만 실행되기 때문에 client에 절대 보여지지 않음
+
+// loading을 먼저 보여주고 데이터를 받아와서 보여주는 것 대신,
+// 여기에서는 api에서 데이터를 받아온 다음 보여줌
+export async function getServerSideProps() {
+  const { results } = await (
+    await fetch("http://localhost:3000/api/movies")
+  ).json();
+  return {
+    props: {
+      results,
+    },
+  };
 }
