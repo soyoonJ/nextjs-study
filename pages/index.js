@@ -8,9 +8,27 @@
 // import {useState} from 'react';
 // import NavBar from "../components/NavBar";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import Seo from "../components/Seo";
+import { useRouter } from "next/router";
 
 export default function Home({ results }) {
+  const router = useRouter();
+  const onClick = (id, title) => {
+    // router.push(`/movies/${id}`);
+    router.push(
+      {
+        pathname: `/movies/${id}`,
+        // query 입력하면 url 뒤에 ?title="potatos" 붙음
+        query: {
+          title,
+        },
+      },
+      // as 역할을 하는 위치. 이 url 추가하면 쿼리 안보임
+      // 근데 router로 전달 가능 => 사용자에게 숨기면서 활용은 가능한 상태
+      `/movies/${id}`
+    );
+  };
   // const [counter, setCounter] = useState(0)
   // const [movies, setMovies] = useState();
   // useEffect(() => {
@@ -34,9 +52,25 @@ export default function Home({ results }) {
       <Seo title="Home" />
       {/* {!movies && <h4>Loading...</h4>} */}
       {results?.map((movie) => (
-        <div key={movie.id}>
+        <div
+          onClick={() => onClick(movie.id, movie.original_title)}
+          key={movie.id}
+        >
           <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} />
-          <h4>{movie.original_title}</h4>
+          <h4>
+            {/* <Link href={`/movies/${movie.id}`}> */}
+            <Link
+              href={{
+                pathname: `/movies/${movie.id}`,
+                query: {
+                  title: movie.original_title,
+                },
+              }}
+              as={`/movies/${movie.id}`}
+            >
+              <a>{movie.original_title}</a>
+            </Link>
+          </h4>
         </div>
       ))}
     </div>

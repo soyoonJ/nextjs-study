@@ -23,6 +23,11 @@ const nextConfig = {
         source: "/api/movies",
         destination: `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`,
       },
+      {
+        // source와 destination의 :id는 동일한 명칭이어야 함
+        source: "/api/movies/:id",
+        destination: `https://api.themoviedb.org/3/movie/:id?api_key=${API_KEY}`,
+      },
     ];
   },
 };
