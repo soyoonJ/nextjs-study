@@ -16,18 +16,19 @@ export default function Home({ results }) {
   const router = useRouter();
   const onClick = (id, title) => {
     // router.push(`/movies/${id}`);
-    router.push(
-      {
-        pathname: `/movies/${id}`,
-        // query 입력하면 url 뒤에 ?title="potatos" 붙음
-        query: {
-          title,
-        },
-      },
-      // as 역할을 하는 위치. 이 url 추가하면 쿼리 안보임
-      // 근데 router로 전달 가능 => 사용자에게 숨기면서 활용은 가능한 상태
-      `/movies/${id}`
-    );
+    // router.push(
+    //   {
+    //     pathname: `/movies/${id}`,
+    //     // query 입력하면 url 뒤에 ?title="potatos" 붙음
+    //     query: {
+    //       title,
+    //     },
+    //   },
+    //   // as 역할을 하는 위치. 이 url 추가하면 쿼리 안보임
+    //   // 근데 router로 전달 가능 => 사용자에게 숨기면서 활용은 가능한 상태
+    //   `/movies/${id}`
+    // );
+    router.push(`/movies/${title}/${id}`);
   };
   // const [counter, setCounter] = useState(0)
   // const [movies, setMovies] = useState();
@@ -59,7 +60,7 @@ export default function Home({ results }) {
           <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} />
           <h4>
             {/* <Link href={`/movies/${movie.id}`}> */}
-            <Link
+            {/* <Link
               href={{
                 pathname: `/movies/${movie.id}`,
                 query: {
@@ -67,7 +68,8 @@ export default function Home({ results }) {
                 },
               }}
               as={`/movies/${movie.id}`}
-            >
+            > */}
+            <Link href={`/movies/${movie.original_title}/${movie.id}`}>
               <a>{movie.original_title}</a>
             </Link>
           </h4>
